@@ -12,6 +12,7 @@ function setup(){
     for(let i = 0; i < NUMLIGHTS; i++){
         lights[i].display();
     }
+    init();
     timeout();
 }
 
@@ -34,18 +35,19 @@ function timeout(){
                     stepFour();
                     timeout();
                 }, 5000);
-            }, 3000);
+            }, 5000);
         }, 5000);
-    }, 1000);
+    }, 5000);
 }
 
 //lights 0 2 -> green 1 3 -> red
 function stepOne(){
-    lights[0].displayGreen()
-    lights[2].displayGreen()
-
     lights[1].displayRed();
     lights[3].displayRed();
+    setTimeout(() => {
+        lights[0].displayGreen()
+        lights[2].displayGreen()
+    }, 2000);
 }
 
 //lights 0 2 -> yellow
@@ -58,15 +60,24 @@ function stepTwo(){
 function stepThree(){
     lights[0].displayRed();
     lights[2].displayRed();
-
-    lights[1].displayGreen();
-    lights[3].displayGreen();
+    setTimeout(() => {
+        lights[1].displayGreen();
+        lights[3].displayGreen();
+    }, 2000);
 }
 
 //lights 1 3 -> yellow
 function stepFour(){
     lights[1].displayYellow();
     lights[3].displayYellow();
+}
+
+function init(){
+    lights[1].displayRed();
+    lights[3].displayRed();
+
+    lights[0].displayGreen()
+    lights[2].displayGreen()
 }
 
 class StopLight{
